@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "*.googleusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "scoop-haven-ice-cream.s3.amazonaws.com",
+      },
     ],
   },
 };

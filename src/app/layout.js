@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./Components/Layouts/Header";
 import { AppProvider } from "./Components/AppContext";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
       >
         <main className="max-w-4xl mx-auto p-4">
           <AppProvider>
+            <Toaster />
             <Header />
             {children}
             <footer className="text-center text-gray-500 border-t p-8 mt-16">
