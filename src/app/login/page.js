@@ -13,7 +13,12 @@ export default function LoginPage() {
     ev.preventDefault();
     setLoginInProgress(true);
 
-    await signIn("credentials", { email, password, callbackUrl: "/" });
+    await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+      callbackUrl: "/",
+    });
 
     setLoginInProgress(false);
   }

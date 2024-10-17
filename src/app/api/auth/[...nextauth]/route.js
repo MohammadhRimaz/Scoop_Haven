@@ -25,6 +25,7 @@ export const authOptions = {
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
         username: {
+          // Changed from 'username' to 'email'
           label: "Email",
           type: "email",
           placeholder: "test@example.com",
@@ -41,16 +42,26 @@ export const authOptions = {
         const email = credentials?.email;
         const password = credentials?.password;
 
+        // Ensure mongoose connection is handled properly
         mongoose.connect(process.env.MONGO_URL);
+
         const user = await User.findOne({ email });
         const passwordOk = user && bcrypt.compareSync(password, user.password);
 
         if (passwordOk) {
-          return user;
+          //   return user;
+          return {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+          };
         }
 
+        // Optionally, throw an error for better error handling
+        throw new Error("Invalid email or password");
+
         // Return null if user data could not be retrieved
-        return null;
+        // return null;
       },
     }),
   ],
