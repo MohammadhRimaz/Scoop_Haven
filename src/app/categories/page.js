@@ -3,6 +3,8 @@ import UserTabs from "@/app/Components/Layouts/UserTabs";
 import { useProfile } from "@/app/Components/UseProfile";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Bin from "../Components/Icons/Bin";
+import Edit from "../Components/Icons/Edit";
 
 export default function CategoriesPage() {
   const [categoryName, setCategoryName] = useState("");
@@ -53,6 +55,25 @@ export default function CategoriesPage() {
     });
   }
 
+  // Function For Delete a Category
+  async function handleDeleteClick(_id) {
+    const promise = new Promise(async (resolve, reject) => {
+      const response = await fetch("/api/categories?_id=" + _id, {
+        method: "DELETE",
+      });
+      if (response.ok) resolve();
+      else reject();
+    });
+
+    await toast.promise(promise, {
+      loading: "Deleting...",
+      success: "Deleted.",
+      error: "Error, sorry...",
+    });
+    // Reload after delete.
+    fetchCategories();
+  }
+
   // While Loading
   if (profileLoading) {
     return "Loading user info...";
@@ -85,9 +106,18 @@ export default function CategoriesPage() {
           </div>
 
           {/* Update/Create Button */}
-          <div className="pb-4">
+          <div className="pb-4 flex gap-2">
             <button className="border border-primary" type="submit">
               {editedCategory ? "Update" : "Create"}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setEditedCategory(null);
+                setCategoryName("");
+              }}
+            >
+              Cancel
             </button>
           </div>
         </div>
@@ -95,18 +125,26 @@ export default function CategoriesPage() {
 
       {/* List of categories */}
       <div>
-        <h2 className="mt-8 text-sm text-gray-500">Edit Category</h2>
+        <h2 className="mt-8 text-sm text-gray-500">Existing Category:</h2>
         {categories?.length > 0 &&
           categories.map((c) => (
-            <button
-              onClick={() => {
-                setEditedCategory(c);
-                setCategoryName(c.name);
-              }}
-              className="bg-gray-300 rounded-xl p-2 px-4 flex gap-2 cursor-pointer mb-1"
-            >
-              <span>{c.name}</span>
-            </button>
+            <div className="bg-gray-100 items-center rounded-xl p-2 px-4 flex gap-2 mb-1">
+              <div className="grow">{c.name}</div>
+              <div className="flex gap-1">
+                <button
+                  onClick={() => {
+                    setEditedCategory(c);
+                    setCategoryName(c.name);
+                  }}
+                  type="button"
+                >
+                  <Edit />
+                </button>
+                <button onClick={() => handleDeleteClick(c._id)} type="button">
+                  <Bin />
+                </button>
+              </div>
+            </div>
           ))}
       </div>
     </section>

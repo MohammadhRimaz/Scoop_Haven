@@ -1,41 +1,21 @@
 "use client";
-import UserTabs from "@/app/Components/Layouts/UserTabs";
 import { useProfile } from "@/app/Components/UseProfile";
-import EditableImage from "@/app/Components/Layouts/EditableImage";
-import { useState } from "react";
-import toast from "react-hot-toast";
+import UserTabs from "../Components/Layouts/UserTabs";
+import Link from "next/link";
+import Image from "next/image";
+import Right from "../Components/Icons/Right";
+import { useEffect, useState } from "react";
 
 export default function MenuItemsPage() {
+  const [menuItems, setMenuItems] = useState([]);
   const { loading, data } = useProfile();
-  const [image, setImage] = useState("");
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [basePrice, setBasePrice] = useState("");
-
-  async function handleFormSubmit(ev) {
-    ev.preventDefault();
-    const data = {
-      image,
-      name,
-      description,
-      basePrice,
-    };
-    const savingPromise = new Promise(async (resolve, reject) => {
-      const response = await fetch("/api/menu-items", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
+  useEffect(() => {
+    fetch("/api/menu-items").then((res) => {
+      res.json().then((menuItems) => {
+        setMenuItems(menuItems);
       });
-      if (response.ok) resolve();
-      else reject();
     });
-
-    await toast.promise(savingPromise, {
-      loading: "Saving the tasty item...",
-      success: "Saved.",
-      error: "Error",
-    });
-  }
+  }, []);
 
   if (loading) {
     return "Loading user info...";
@@ -46,39 +26,37 @@ export default function MenuItemsPage() {
   }
 
   return (
-    <section className="mt-8">
+    <section className="mt-8 max-w-md mx-auto">
       <UserTabs isAdmin={true} />
-      <form onSubmit={handleFormSubmit} className="mt-8 max-w-md mx-auto">
-        <div
-          className="grid items-start gap-4"
-          style={{ gridTemplateColumns: ".3fr .7fr" }}
-        >
-          <div>
-            <EditableImage link={image} setLink={setImage} />
-          </div>
-          <div className="grow">
-            <label>Item Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(ev) => setName(ev.target.value)}
-            />
-            <label>Description</label>
-            <input
-              type="text"
-              value={description}
-              onChange={(ev) => setDescription(ev.target.value)}
-            />
-            <label>Base Price</label>
-            <input
-              type="text"
-              value={basePrice}
-              onChange={(ev) => setBasePrice(ev.target.value)}
-            />
-            <button type="submit">Save</button>
-          </div>
+      <div className="mt-8">
+        <Link href={"/menu-items/new"} className="button flex">
+          <span>Create New Item</span>
+          <Right />
+        </Link>
+      </div>
+      <div>
+        <h2 className="text-sm mt-8 text-gray-500">Edit Menu Item:</h2>
+        <div className="grid grid-cols-3 gap-2">
+          {menuItems?.length > 0 &&
+            menuItems.map((item) => (
+              <Link
+                href={"/menu-items/edit/" + item._id}
+                className="mb-1 bg-gray-200 rounded-lg p-4 flex-col"
+              >
+                <div className="relative">
+                  <Image
+                    src={item.image}
+                    alt={""}
+                    className="rounded-md"
+                    width={200}
+                    height={200}
+                  />
+                </div>
+                <div className="text-center">{item.name}</div>
+              </Link>
+            ))}
         </div>
-      </form>
+      </div>
     </section>
   );
 }

@@ -31,6 +31,7 @@ export default function EditTableImage({ link, setLink }) {
 
   return (
     <>
+      {/* Image upload section */}
       {link && (
         <Image
           className="rounded-lg w-full h-full mb-1"
