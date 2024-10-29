@@ -8,7 +8,9 @@ export async function POST(req) {
   mongoose.connect(process.env.MONGO_URL);
   const pass = body.password;
   if (!pass?.length || pass.length < 5) {
-    new Error("Password must be at least 5 characters.");
+    return new Error("Password must be at least 5 characters.", {
+      status: 400,
+    });
   }
 
   // Hashed the password field in the DataBase

@@ -53,7 +53,7 @@ export default function NewMenuItemPage() {
       <UserTabs isAdmin={true} />
 
       {/* Item List Button */}
-      <div className="max-w-md mx-auto mt-8">
+      <div className="max-w-lg mx-auto mt-8">
         <Link href={"/menu-items"} className="button">
           <Left />
           <span>Show All Menu Items</span>

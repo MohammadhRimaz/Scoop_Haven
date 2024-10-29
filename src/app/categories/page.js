@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Bin from "../Components/Icons/Bin";
 import Edit from "../Components/Icons/Edit";
+import DeleteButton from "@/app/Components/DeleteButton";
 
 export default function CategoriesPage() {
   const [categoryName, setCategoryName] = useState("");
@@ -84,7 +85,7 @@ export default function CategoriesPage() {
   }
 
   return (
-    <section className="mt-8 max-w-md mx-auto">
+    <section className="mt-8 max-w-lg mx-auto">
       <UserTabs isAdmin={true} />
       <form className="mt-8" onSubmit={handleCategorySubmit}>
         <div className="flex gap-2 items-end">
@@ -110,6 +111,7 @@ export default function CategoriesPage() {
             <button className="border border-primary" type="submit">
               {editedCategory ? "Update" : "Create"}
             </button>
+            {/* Cancel Button for Edit click */}
             <button
               type="button"
               onClick={() => {
@@ -140,9 +142,10 @@ export default function CategoriesPage() {
                 >
                   <Edit />
                 </button>
-                <button onClick={() => handleDeleteClick(c._id)} type="button">
-                  <Bin />
-                </button>
+                <DeleteButton
+                  icon={<Bin />}
+                  onDelete={() => handleDeleteClick(c._id)}
+                />
               </div>
             </div>
           ))}

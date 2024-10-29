@@ -15,26 +15,39 @@ export default function Home() {
       <HomeMenu />
 
       {/* About Section */}
-      <section className="text-center my-16">
+      <section className="text-center my-16" id="about">
         <SectionHeaders subHeader={"Our Story"} mainHeader={"About us"} />
-        <div className="max-w-md mx-auto text-gray-500 mt-4 flex flex-col gap-4 ">
+        <div className="max-w-2xl mx-auto text-gray-500 mt-4 flex flex-col gap-4 ">
           <p>
-            loremjsoldj o;aero eoahr hkdf kda; hklshadoleh aslkhrj fkheirg
-            vbx,jrgeirg bx asdh;qwoa mbx igeri
+            Welcome to Scoop Haven, where every scoop tells a story of flavor,
+            indulgence, and pure delight! Our mission is simple: to bring joy
+            through a rich variety of premium ice creams crafted with the finest
+            ingredients. From our Fruit Fusion category, brimming with
+            refreshing real fruit flavors, to our Cone Delights, offering
+            classic and unique combinations, each treat is made to satisfy every
+            craving.
           </p>
           <p>
-            dsafuewdgrfsbxcjgwweudir rujewgw uwgr xzjcv ielr rgaidsri 8eaqjg
-            rlsgd; gas;g ieqg rxgzzxkgfl ases wew
+            For those looking for something a little extra, our Ice Cream Bars
+            are dipped, layered, and topped to perfection, while our Sandwich
+            Sensations bring beloved flavors together between delicious cookie
+            layers. And for the ultimate indulgence, our Premium Indulgences
+            feature artisanal buckets and decadent ice cream sticks, including
+            the luxuriously adorned Golden Vanilla cup.
           </p>
           <p>
-            dsafuewdgrfsbxcjgwweudir rujewgw uwgr xzjcv ielr rgaidsri 8eaqjg
-            rlsgd; gas;g ieqg rxgzzxkgfl ases wew
+            At Scoop Haven, we believe ice cream is more than just dessert -
+            it's an experience, a moment of joy, and a treat to share with loved
+            ones. Whether you’re a fan of rich chocolate, vibrant fruits, or
+            nutty crunches, we’ve got a scoop (or two) waiting for you. Come,
+            explore our flavors, and find your haven of sweetness with every
+            bite!
           </p>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="text-center my-8">
+      <section className="text-center my-8" id="contact">
         <SectionHeaders
           subHeader={"Don't Hesitate"}
           mainHeader={"Contact us"}

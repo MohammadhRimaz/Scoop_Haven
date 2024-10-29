@@ -49,19 +49,10 @@ export const authOptions = {
         const passwordOk = user && bcrypt.compareSync(password, user.password);
 
         if (passwordOk) {
-          //   return user;
-          return {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-          };
+          return user;
         }
-
-        // Optionally, throw an error for better error handling
-        throw new Error("Invalid email or password");
-
         // Return null if user data could not be retrieved
-        // return null;
+        return null;
       },
     }),
   ],

@@ -14,12 +14,10 @@ export default function LoginPage() {
     setLoginInProgress(true);
 
     await signIn("credentials", {
-      redirect: false,
       email,
       password,
       callbackUrl: "/",
     });
-
     setLoginInProgress(false);
   }
 

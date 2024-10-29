@@ -51,7 +51,7 @@ export default function RegisterPage() {
           <div className="my-4 text-center">
             An Error occurred!
             <br />
-            Username is already taken.
+            Please try again later.
           </div>
         )}
 

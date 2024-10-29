@@ -3,7 +3,7 @@ import { model, models, Schema } from "mongoose";
 // Set the validation for email and password fields.
 const UserSchema = new Schema(
   {
-    name: { type: String, required: false },
+    name: { type: String },
     email: {
       type: String,
       required: true,
@@ -13,6 +13,12 @@ const UserSchema = new Schema(
       type: String,
       required: function () {
         return !this.googleId;
+      },
+      validate: (pass) => {
+        if (!pass?.length || pass.length < 5) {
+          new Error("Password must be at least 5 characters");
+          return false;
+        }
       },
     },
     image: { type: String },
