@@ -1,13 +1,17 @@
 import { useState } from "react";
+import AddToCartButton from "@/app/Components/Menu/AddToCartButton";
 
 export default function MenuItemTile({ onAddToCart, ...item }) {
-  const { image, description, name, basePrice } = item;
+  const { image, description, name, basePrice, counts, flavours } = item;
 
   // toggle function for expand/collapse the description
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleReadMore = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const hasCountsOrFlavours = counts?.length > 0 || flavours?.length > 0;
+
   return (
     <div className="bg-gray-100 p-4 rounded-lg text-center group hover:bg-white hover:shadow-lg hover:shadow-black/45 transition:all">
       <div className="text-center">
@@ -34,13 +38,11 @@ export default function MenuItemTile({ onAddToCart, ...item }) {
         {isExpanded ? "Read Less" : "Read More"}
       </div>
       {/* Add to cart button */}
-      <button
-        type="button"
+      <AddToCartButton
+        hasCountsOrFlavours={hasCountsOrFlavours}
         onClick={onAddToCart}
-        className="mt-4 bg-primary text-white rounded-full px-8 py-2"
-      >
-        Add to cart Rs.{basePrice}
-      </button>
+        basePrice={basePrice}
+      />
     </div>
   );
 }

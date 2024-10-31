@@ -6,19 +6,28 @@ import Image from "next/image";
 
 export default function MenuItem(menuItem) {
   const { image, name, description, basePrice, counts, flavours } = menuItem;
-  const [selectedCount, setSelectedCount] = useState(null);
+  const [selectedCount, setSelectedCount] = useState(counts?.[0] || null);
   const [selectedFlavours, setSelectedFlavours] = useState([]);
 
   //Add to Cart function
   const { addToCart } = useContext(CartContext);
   const [showPopup, setShowPopup] = useState(false);
   function handleAddToCartButtonClick() {
-    if (counts.length === 0 && flavours.length === 0) {
-      addToCart(menuItem);
-      toast.success("Added to Cart.");
-    } else {
+    const hasOption = counts.length > 0 || flavours.length > 0;
+    if (hasOption && !showPopup) {
       setShowPopup(true);
+      return;
     }
+    addToCart(menuItem, selectedCount, selectedFlavours);
+    closePopup();
+    toast.success("Added to Cart.");
+  }
+
+  // The Function for close popup
+  function closePopup() {
+    setShowPopup(false);
+    setSelectedFlavours([]);
+    setSelectedCount(counts?.[0] || null);
   }
 
   // Function for selected flavors
@@ -33,12 +42,29 @@ export default function MenuItem(menuItem) {
     }
   }
 
+  // Calculate Total price
+  let selectedPrice = basePrice;
+  if (selectedCount) {
+    selectedPrice += selectedCount.price;
+  }
+  if (selectedFlavours?.length > 0) {
+    for (const flavour of selectedFlavours) {
+      selectedPrice += flavour.price;
+    }
+  }
+
   return (
     <>
       {/* A popup for add to cart button if extra counts or flavours need  */}
       {showPopup && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center">
-          <div className="my-8 bg-white p-2 rounded-lg max-w-md">
+        <div
+          onClick={closePopup} //close popup here
+          className="fixed inset-0 bg-black/80 flex items-center justify-center"
+        >
+          <div
+            onClick={(ev) => ev.stopPropagation()}
+            className="my-8 bg-white p-2 rounded-lg max-w-md"
+          >
             <div
               className="overflow-auto p-2"
               style={{ maxHeight: "calc(100vh - 100px" }}
@@ -72,9 +98,7 @@ export default function MenuItem(menuItem) {
               )}
               {flavours?.length > 0 && (
                 <div className="py-2">
-                  <h3 className="text-center text-gray-700">
-                    Add Extra Scoop Flavors
-                  </h3>
+                  <h3 className="text-center text-gray-700">Any Extras?</h3>
                   {flavours.map((flavour) => (
                     <label className="flex items-center gap-2 p-4 rounded-md mb-1">
                       <input
@@ -87,9 +111,19 @@ export default function MenuItem(menuItem) {
                   ))}
                 </div>
               )}
-              <button className="primary mb-4" type="button">
-                Add to Cart "Selected Price"
+              <button
+                onClick={handleAddToCartButtonClick}
+                className="primary sticky bottom-2"
+                type="button"
+              >
+                Add to Cart Rs. {selectedPrice}
               </button>
+              <buuton
+                onClick={closePopup} //close popup here
+                className="button mt-2 cursor-pointer"
+              >
+                Close
+              </buuton>
             </div>
           </div>
         </div>
