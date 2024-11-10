@@ -84,10 +84,13 @@ export default function MenuItem(menuItem) {
                 <div className="py-2">
                   <h3 className="text-center text-gray-700">Add Scoop Count</h3>
                   {counts.map((count) => (
-                    <label className="flex items-center gap-2 p-2 rounded-md mb-1">
+                    <label
+                      key={count._id}
+                      className="flex items-center gap-2 p-2 rounded-md mb-1"
+                    >
                       <input
                         type="radio"
-                        onClick={() => setSelectedCount(count)}
+                        onChange={() => setSelectedCount(count)}
                         checked={selectedCount?.name === count.name}
                         name="count"
                       />
@@ -100,7 +103,10 @@ export default function MenuItem(menuItem) {
                 <div className="py-2">
                   <h3 className="text-center text-gray-700">Any Extras?</h3>
                   {flavours.map((flavour) => (
-                    <label className="flex items-center gap-2 p-4 rounded-md mb-1">
+                    <label
+                      key={flavour._id}
+                      className="flex items-center gap-2 p-4 rounded-md mb-1"
+                    >
                       <input
                         type="checkbox"
                         onClick={(ev) => handleExtraFlavorClick(ev, flavour)}
@@ -118,12 +124,12 @@ export default function MenuItem(menuItem) {
               >
                 Add to Cart Rs. {selectedPrice}
               </button>
-              <buuton
+              <button
                 onClick={closePopup} //close popup here
                 className="button mt-2 cursor-pointer"
               >
                 Close
-              </buuton>
+              </button>
             </div>
           </div>
         </div>

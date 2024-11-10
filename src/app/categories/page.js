@@ -130,7 +130,10 @@ export default function CategoriesPage() {
         <h2 className="mt-8 text-sm text-gray-500">Existing Category:</h2>
         {categories?.length > 0 &&
           categories.map((c) => (
-            <div className="bg-gray-100 items-center rounded-xl p-2 px-4 flex gap-2 mb-1">
+            <div
+              key={c._id}
+              className="bg-gray-100 items-center rounded-xl p-2 px-4 flex gap-2 mb-1"
+            >
               <div className="grow">{c.name}</div>
               <div className="flex gap-1">
                 <button

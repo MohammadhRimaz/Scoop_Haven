@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 section.hero {
-    @apply grid;
-    grid-template-columns: .6fr .5fr;
+    @apply block md:grid;
+    grid-template-columns: .4fr .6fr;
 }
 
 select,

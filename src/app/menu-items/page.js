@@ -40,6 +40,7 @@ export default function MenuItemsPage() {
           {menuItems?.length > 0 &&
             menuItems.map((item) => (
               <Link
+                key={item._id}
                 href={"/menu-items/edit/" + item._id}
                 className="mb-1 bg-gray-100 rounded-lg p-4 flex-col"
               >
