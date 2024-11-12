@@ -29,7 +29,7 @@ export default function HomeMenu() {
         </div>
         <div className="absolute right-0 top-[10px] -z-10">
           <Image
-            src={"/Chocolate.png"}
+            src={"/Chocolate.jpg"}
             alt={"Chocolate"}
             width={200}
             height={200}

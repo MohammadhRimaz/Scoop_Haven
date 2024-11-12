@@ -7,6 +7,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/app/libs/mongoConnect";
 import { UserInfo } from "@/app/models/UserInfo";
+import { signIn } from "next-auth/react";
 
 export const authOptions = {
   secret: process.env.SECRET,
@@ -15,6 +16,23 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+
+      async profile(profile) {
+        // Check if there's a user with the same email
+        const existingUser = await User.findOne({ email: profile.email });
+        if (existingUser && !existingUser.googleId) {
+          existingUser.googleId = profile.sub; //Save Googel Id
+          await existingUser.save();
+        } else if (existingUser && existingUser.googleId !== profile.sub) {
+          throw new Error("Account alredy linked with a different Google ID.");
+        }
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+        };
+      },
     }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -25,7 +43,7 @@ export const authOptions = {
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: {
+        email: {
           // Changed from 'username' to 'email'
           label: "Email",
           type: "email",
@@ -50,13 +68,43 @@ export const authOptions = {
         const passwordOk = user && bcrypt.compareSync(password, user.password);
 
         if (passwordOk) {
-          return user;
+          return {
+            id: user._id,
+            email: user.email,
+            name: user.name || email.split("@")[0], // Fallback to email username
+          };
         }
         // Return null if user data could not be retrieved
         return null;
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      // Persist the user data on the token if they exist
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      // Attach the token properties to the session for easy access in the UI
+      if (token) {
+        session.user.id = token.id;
+        session.user.email = token.email;
+        session.user.name = token.name;
+      }
+      return session;
+    },
+  },
+  pages: {
+    signIn: "/login",
+  },
 };
 
 export async function isAdmin() {

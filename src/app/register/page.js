@@ -22,7 +22,7 @@ export default function RegisterPage() {
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
-    // Visible the error/login message after the registration
+    // Visible the error/success message after the registration
     if (response.ok) {
       setUserCreated(true);
     } else {
@@ -31,12 +31,19 @@ export default function RegisterPage() {
     setCreatingUser(false);
   }
 
+  // Handle Google Sign-In
+  function handleGoogleSignIn() {
+    setError(false); // Hide the error message before Google sign-in
+    signIn("google", { callbackUrl: "/" });
+  }
+
   return (
     <>
       <section className="mt-8">
         {/* Title of the Register page */}
         <h1 className="text-center text-primary text-4xl mb-4">Register</h1>
-        {/* Message after Registration  */}
+
+        {/* Success Message after Registration  */}
         {userCreated && (
           <div className="my-4 text-center">
             User created.
@@ -46,16 +53,17 @@ export default function RegisterPage() {
             </Link>
           </div>
         )}
+
         {/* Error Message */}
-        {error && (
+        {!userCreated && error && (
           <div className="my-4 text-center">
-            An Error occurred!
+            An error occurred!
             <br />
-            Please try again later.
+            The email and password are already taken.
           </div>
         )}
 
-        {/* Input Fields and Buttons in Signup Page */}
+        {/* Registration Form */}
         <form className="block max-w-xs mx-auto" onSubmit={handleFormSubmit}>
           <input
             type="email"
@@ -78,7 +86,8 @@ export default function RegisterPage() {
             or login with provider
           </div>
           <button
-            onClick={() => signIn("google", { callbackUrl: "/" })}
+            type="button"
+            onClick={handleGoogleSignIn}
             className="flex gap-4 justify-center"
           >
             <Image
