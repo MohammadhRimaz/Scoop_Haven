@@ -50,8 +50,8 @@ export async function POST(req) {
         product_data: {
           name: productName,
         },
-        // unit_amount: productPrice * 100,
-        unit_amount: productPrice,
+        // unit_amount: productPrice * 100, Because it's shows in cents.
+        unit_amount: productPrice * 100,
       },
     });
   }
@@ -73,7 +73,7 @@ export async function POST(req) {
           display_name: "Delivery Fee",
           type: "fixed_amount",
           // Need to change the currency
-          fixed_amount: { amount: 200, currency: "USD" },
+          fixed_amount: { amount: 500, currency: "USD" },
         },
       },
     ],

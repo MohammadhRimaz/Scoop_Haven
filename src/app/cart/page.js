@@ -91,7 +91,7 @@ export default function CartPage() {
       <div className="text-center">
         <SectionHeaders mainHeader="Cart" />
       </div>
-      <div className="mt-8 grid gap-8 grid-cols-2">
+      <div className="mt-8 grid xl:gap-8 xl:grid-cols-2">
         <div>
           {/* If products selected, display It's details*/}
           {cartProducts?.length > 0 &&
@@ -103,7 +103,7 @@ export default function CartPage() {
                 index={index}
               />
             ))}
-          <div className="py-2 pr-16 flex justify-end items-center">
+          <div className="py-2 pr-16 flex justify-end items-center text-[17px]">
             <div className="text-gray-500">
               Subtotal:
               <br />
@@ -112,23 +112,22 @@ export default function CartPage() {
               Total:
             </div>
             <div className="font-semibold pl-2">
-              Rs. {subTotal}
+              ${subTotal}
               <br />
-              Rs. 200
-              <br />
-              Rs. {subTotal + 200}
+              $5
+              <br />${subTotal + 5}
             </div>
           </div>
         </div>
         <div className="bg-zinc-200 p-4 rounded-lg">
-          <h2 className="text-center mb-4">Checkout</h2>
+          <h2 className="text-center text-lg mb-4">Checkout</h2>
           <form onSubmit={proceedToCheckuot}>
             <AddressInputs
               addressProps={address}
               setAddressProps={handleAddressChange}
             />
             <button className="mt-6" type="submit">
-              Pay Rs. {subTotal + 200}
+              Pay ${subTotal + 5}
             </button>
           </form>
         </div>

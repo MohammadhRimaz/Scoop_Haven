@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Right from "../Icons/Right";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -12,22 +13,22 @@ export default function Hero() {
           <br /> a&nbsp;
           <span className="text-primary">Time!</span>
         </h1>
-        <p className="my-4 text-gray-500 text-sm">
+        <p className="my-4 text-gray-500 text-base">
           Welcome to Scoop Haven, where every visit is a delicious adventure!
           Indulge in our handcrafted ice creams, made with love and the finest
           ingredients. From classic favorites to bold, unique flavors, there's a
           perfect scoop for everyone. Treat yourself to a sweet escape today!
         </p>
-        <div className="flex gap-4 text-sm">
-          <button className="bg-primary flex justify-center gap-2 items-center text-white px-4 py-2 rounded-full">
-            Order Now
-            {/* importing an arrow icon inside the button */}
-            <Right />
+        <div className="flex gap-4 text-base">
+          <button className="bg-primary justify-center text-white px-4 py-2 rounded-full">
+            <Link className="flex gap-2 items-center" href={"/menu"}>
+              Order&nbsp;Now
+              {/* importing an arrow icon inside the button */}
+              <Right />
+            </Link>
           </button>
           <button className="flex border-0 items-center gap-2 py-2 text-gray-600 text-semibold">
-            Learn More
-            {/* importing an arrow icon inside the button */}
-            <Right />
+            <Link href={"/#about"}>Learn More</Link>
           </button>
         </div>
       </div>

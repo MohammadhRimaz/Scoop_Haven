@@ -94,7 +94,7 @@ export default function MenuItem(menuItem) {
                         checked={selectedCount?.name === count.name}
                         name="count"
                       />
-                      {count.name} Rs.{basePrice + count.price}
+                      {count.name} ${basePrice + count.price}
                     </label>
                   ))}
                 </div>
@@ -112,7 +112,7 @@ export default function MenuItem(menuItem) {
                         onClick={(ev) => handleExtraFlavorClick(ev, flavour)}
                         name={flavour.name}
                       />
-                      {flavour.name} +Rs.{flavour.price}
+                      {flavour.name} +${flavour.price}
                     </label>
                   ))}
                 </div>
@@ -122,7 +122,7 @@ export default function MenuItem(menuItem) {
                 className="primary sticky bottom-2"
                 type="button"
               >
-                Add to Cart Rs. {selectedPrice}
+                Add to Cart ${selectedPrice}
               </button>
               <button
                 onClick={closePopup} //close popup here

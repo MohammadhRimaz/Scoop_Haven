@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 section.hero {
-    @apply block md:grid;
-    grid-template-columns: .4fr .6fr;
+  @apply block md:grid;
+  grid-template-columns: 0.4fr 0.6fr;
 }
 
 select,
@@ -12,46 +14,51 @@ input[type="email"],
 input[type="password"],
 input[type="tel"],
 input[type="text"] {
-    @apply block w-full mb-4 rounded-xl;
-    @apply border p-2 border-gray-300 bg-gray-100;
+  @apply block w-full mb-4 rounded-xl;
+  @apply border p-2 border-gray-300 bg-gray-100;
 }
 
 input[type="email"]:disabled,
 input[type="password"]:disabled,
 input[type="tel"]:disabled,
 input[type="text"]:disabled {
-    @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500;
+  @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500;
 }
 
 label {
-    @apply text-gray-500 text-sm
+  @apply text-gray-500 text-[17px];
 }
 
 label+input {
-    margin-top: -2px
+  margin-top: -2px;
+}
+
+/* For <Link> tag */
+a {
+  @apply text-[17px];
 }
 
 button,
 .button {
-    @apply flex w-full justify-center gap-2 text-gray-700 font-semibold;
-    @apply border border-gray-300 rounded-xl px-6 py-2;
+  @apply flex w-full justify-center gap-2 text-gray-700 font-semibold;
+  @apply border border-gray-300 rounded-xl px-6 py-2;
 }
 
 button[type="submit"],
 .sumbit,
 button.primary {
-    @apply border-primary bg-primary text-white;
+  @apply border-primary bg-primary text-white text-base;
 }
 
 button[type="submit"]:disabled,
 .sumbit:disabled {
-    @apply cursor-not-allowed bg-red-400;
+  @apply cursor-not-allowed bg-red-400;
 }
 
 div.tabs>* {
-    @apply bg-gray-300 text-gray-700 rounded-full py-2 px-4;
+  @apply bg-gray-300 text-gray-700 rounded-full py-2 px-4;
 }
 
 div.tabs>*.active {
-    @apply bg-primary text-white;
+  @apply bg-primary text-white;
 }

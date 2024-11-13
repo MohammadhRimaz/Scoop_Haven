@@ -127,7 +127,7 @@ export default function CategoriesPage() {
 
       {/* List of categories */}
       <div>
-        <h2 className="mt-8 text-sm text-gray-500">Existing Category:</h2>
+        <h2 className="mt-8 text-base text-gray-500">Existing Category:</h2>
         {categories?.length > 0 &&
           categories.map((c) => (
             <div

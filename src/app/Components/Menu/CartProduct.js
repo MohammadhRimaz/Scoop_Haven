@@ -9,25 +9,23 @@ export default function CartProduct({ product, onRemove, index }) {
         <Image src={product.image} alt={""} width={200} height={200} />
       </div>
       <div className="grow">
-        <h3 className="font-semibold">{product.name}</h3>
+        <h3 className="font-semibold text-lg">{product.name}</h3>
         {product.count && (
-          <div className="text-sm">
+          <div className="text-base">
             Count: <span>{product.count.name}</span>
           </div>
         )}
         {product.flavour?.length > 0 && (
-          <div className="text-sm text-gray-500">
+          <div className="text-base text-gray-500">
             {product.flavours.map((flavour) => (
               <div>
-                {flavour.name} + Rs. {flavour.price}
+                {flavour.name} + ${flavour.price}
               </div>
             ))}
           </div>
         )}
       </div>
-      <div className="text-lg font-semibold">
-        Rs. {cartProductPrice(product)}
-      </div>
+      <div className="text-lg font-semibold">${cartProductPrice(product)}</div>
       {onRemove && (
         <div className="ml-2">
           <button type="button" onClick={() => onRemove(index)} className="p-2">

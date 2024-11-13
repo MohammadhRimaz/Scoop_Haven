@@ -41,7 +41,7 @@ export default function OrderPage() {
     <section className="max-w-2xl mx-auto mt-8">
       <div className="text-center">
         <SectionHeaders mainHeader="Your Order" />
-        <div className="mt-4 mb-8">
+        <div className="mt-4 mb-8 text-lg">
           <p>Thanks for your order!</p>
           <p>We will call you when your order will on the way....</p>
         </div>
@@ -53,20 +53,18 @@ export default function OrderPage() {
             {order.cartProducts.map((product) => (
               <CartProduct key={product._id} product={product} />
             ))}
-            <div className="text-right py-2 text-gray-500">
+            <div className="text-right py-2 text-gray-500 text-[17px]">
               Subtotal:{" "}
               <span className="text-black font-bold inline-block w-16">
-                Rs. {subtotal}
+                ${subtotal}
               </span>
               <br />
               Delivery:{" "}
-              <span className="text-black font-bold inline-block w-16">
-                Rs. 200
-              </span>
+              <span className="text-black font-bold inline-block w-16">$5</span>
               <br />
               Total:{" "}
               <span className="text-black font-bold inline-block w-16">
-                Rs. {subtotal + 200}
+                ${subtotal + 5}
               </span>
               <br />
             </div>

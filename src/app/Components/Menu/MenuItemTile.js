@@ -26,14 +26,16 @@ export default function MenuItemTile({ onAddToCart, ...item }) {
       <h4 className="font-semibold text-xl my-3">{name}</h4>
       {/* Item Description */}
       <p
-        className={`text-gray-500 text-sm ${!isExpanded ? "line-clamp-2" : ""}`}
+        className={`text-gray-500 text-base ${
+          !isExpanded ? "line-clamp-2" : ""
+        }`}
       >
         {description}
       </p>
       {/* Item Description Toggle Button */}
       <div
         onClick={toggleReadMore}
-        className="text-gray-700 text-sm mt-2 cursor-pointer"
+        className="text-gray-700 text-base mt-2 cursor-pointer"
       >
         {isExpanded ? "Read Less" : "Read More"}
       </div>

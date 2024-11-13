@@ -1,8 +1,14 @@
 import EditableImage from "@/app/Components/Layouts/EditableImage";
 import { useEffect, useState } from "react";
 import MenuItemPriceProps from "@/app/Components/Layouts/MenuItemPriceProps";
+import DeleteButton from "../DeleteButton";
 
-export default function MenuItemForm({ onSubmit, menuItem }) {
+export default function MenuItemForm({
+  onSubmit,
+  menuItem,
+  showDeleteButton = false,
+  onDelete,
+}) {
   const [image, setImage] = useState(menuItem?.image || "");
   const [name, setName] = useState(menuItem?.name || "");
   const [description, setDescription] = useState(menuItem?.description || "");
@@ -96,6 +102,17 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           />
 
           <button type="submit">Save</button>
+
+          {/* Conditionally render the delete button if showDeleteButton is true */}
+          {showDeleteButton && (
+            <div className="mt-2">
+              <DeleteButton
+                label="Delete"
+                onDelete={onDelete}
+                className="w-full md:w-auto"
+              />
+            </div>
+          )}
         </div>
       </div>
     </form>

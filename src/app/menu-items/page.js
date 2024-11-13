@@ -35,7 +35,7 @@ export default function MenuItemsPage() {
         </Link>
       </div>
       <div>
-        <h2 className="text-sm mt-8 text-gray-500">Edit Menu Item:</h2>
+        <h2 className="text-base mt-8 text-gray-500">Edit Menu Item:</h2>
         <div className="grid grid-cols-3 gap-2">
           {menuItems?.length > 0 &&
             menuItems.map((item) => (

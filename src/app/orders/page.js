@@ -32,6 +32,9 @@ export default function OrdersPage() {
         {loadingOrders && (
           <div className="text-center">Loading order details...</div>
         )}
+        {/* {orders.length === 0 && (
+          <div className="text-center">You haven't order anything yet...🥺</div>
+        )} */}
         {orders?.length > 0 &&
           orders.map((order) => (
             <div
@@ -63,7 +66,7 @@ export default function OrdersPage() {
                   </div>
 
                   {/* Display Ordered Items */}
-                  <div className="text-gray-500 text-xs">
+                  <div className="text-gray-500 text-sm">
                     {order.cartProducts.map((p) => p.name).join(", ")}
                   </div>
                 </div>
