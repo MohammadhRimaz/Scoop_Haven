@@ -37,9 +37,9 @@ export default function Home() {
           </p>
           <p>
             At Scoop Haven, we believe ice cream is more than just dessert -
-            it's an experience, a moment of joy, and a treat to share with loved
-            ones. Whether you’re a fan of rich chocolate, vibrant fruits, or
-            nutty crunches, we’ve got a scoop (or two) waiting for you. Come,
+            it&apos;s an experience, a moment of joy, and a treat to share with
+            loved ones. Whether you’re a fan of rich chocolate, vibrant fruits,
+            or nutty crunches, we’ve got a scoop (or two) waiting for you. Come,
             explore our flavors, and find your haven of sweetness with every
             bite!
           </p>

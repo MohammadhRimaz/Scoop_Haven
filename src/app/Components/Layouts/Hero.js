@@ -16,8 +16,9 @@ export default function Hero() {
         <p className="my-4 text-gray-500 text-base">
           Welcome to Scoop Haven, where every visit is a delicious adventure!
           Indulge in our handcrafted ice creams, made with love and the finest
-          ingredients. From classic favorites to bold, unique flavors, there's a
-          perfect scoop for everyone. Treat yourself to a sweet escape today!
+          ingredients. From classic favorites to bold, unique flavors,
+          there&apos;s a perfect scoop for everyone. Treat yourself to a sweet
+          escape today!
         </p>
         <div className="flex gap-4 text-base">
           <button className="bg-primary justify-center text-white px-4 py-2 rounded-full">

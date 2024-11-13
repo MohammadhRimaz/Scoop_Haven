@@ -64,7 +64,7 @@ export default function LoginPage() {
           Login with google
         </button>
         <div className="text-center my-4 text-gray-500">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link className="underline text-gray-700" href={"/register"}>
             Register Here
           </Link>
