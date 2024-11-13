@@ -30,7 +30,7 @@ export default function MenuItemPriceProps({
     });
   }
 
-  // Function for Remove extra count
+  // Function for Remove extra count1
   function removeProp(indexToRemove) {
     setProps((prev) => prev.filter((v, index) => index !== indexToRemove));
   }
