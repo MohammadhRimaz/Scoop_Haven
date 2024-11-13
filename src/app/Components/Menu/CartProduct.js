@@ -18,7 +18,7 @@ export default function CartProduct({ product, onRemove, index }) {
         {product.flavour?.length > 0 && (
           <div className="text-base text-gray-500">
             {product.flavours.map((flavour) => (
-              <div>
+              <div key={flavour.name}>
                 {flavour.name} + ${flavour.price}
               </div>
             ))}

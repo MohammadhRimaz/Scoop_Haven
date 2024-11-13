@@ -37,7 +37,7 @@ export default function MenuItemPriceProps({
 
   return (
     <div className="bg-gray-300 p-2 rounded-md mb-2">
-      {/* Expand/Collapse Button */}
+      {/* Expand/Collapse Button for the count/flavours */}
       <button
         className="inline-flex p-1 border-0 justify-start"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -51,7 +51,7 @@ export default function MenuItemPriceProps({
       <div className={isOpen ? "block" : "hidden"}>
         {props?.length > 0 &&
           props.map((prop, index) => (
-            <div className="flex items-end gap-2">
+            <div key={index} className="flex items-end gap-2">
               {/* Doubt: input type need to be change */}
               <div>
                 <lable>{title}</lable>
