@@ -1,7 +1,7 @@
 import EditableImage from "@/app/Components/Layouts/EditableImage";
 import { useEffect, useState } from "react";
 import DeleteButton from "../DeleteButton";
-import MenuItemPriceProps from "@/app/Components/Layouts/MenuItemPriceProps";
+import MenuItemPriceProps from "../Layouts/MenuItemPriceProps";
 
 export default function MenuItemForm({
   onSubmit,
