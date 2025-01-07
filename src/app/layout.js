@@ -21,6 +21,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const currentYear = new Data().getFullYear();
+
   return (
     <html lang="en" className="scroll-smooth">
       <body className="font-roboto antialiased">
@@ -30,7 +32,7 @@ export default function RootLayout({ children }) {
             <Header />
             {children}
             <footer className="text-center text-gray-500 border-t p-8 mt-16">
-              &copy; 2024 All rights reserved.
+              &copy; {currentYear} All rights reserved.
             </footer>
           </AppProvider>
         </main>
