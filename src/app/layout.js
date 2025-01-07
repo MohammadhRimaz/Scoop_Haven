@@ -21,7 +21,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const currentYear = new Data().getFullYear();
+  const currentYear = new Date().getFullYear();
 
   return (
     <html lang="en" className="scroll-smooth">
